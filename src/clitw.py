@@ -89,5 +89,5 @@ class Twitter:
         print("success")
 
 
-def main():
+def main() -> None:
     fire.Fire(Twitter)
