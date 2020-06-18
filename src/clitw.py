@@ -1,7 +1,7 @@
 import json
 import os
 import webbrowser
-from typing import Any, Dict
+from typing import Any
 
 import fire
 import tweepy
@@ -9,26 +9,15 @@ import tweepy
 BASE_URL = "https://api.twitter.com/"
 ROOT_PATH = os.environ["HOME"] + "/clitw"
 TOKEN_FILE = ROOT_PATH + "/oauth_token.json"
-CONSUMER_FILE = ROOT_PATH + "/consumer_api.json"
 
 
 def make_auth() -> Any:
-    if os.path.isfile(CONSUMER_FILE):
-        with open(CONSUMER_FILE, "r") as f:
-            consumer = json.load(f)
-    else:
-        consumer = register_consumer()
+    consumer = {
+        "consumer_key": "6VHNnopUWqMdqWICkpL2M9OYz",
+        "consumer_secret": "G5aAfW127bpjJK2hf4IUCYtpYgfIW2XJAqcY7JgWN0uftTbJB8",
+    }
 
     return tweepy.OAuthHandler(**consumer)
-
-
-def register_consumer() -> Dict[str, str]:
-    consumer_key = input("Consumer key: ")
-    consumer_secret = input("Consumer secret: ")
-    consumer = {"consumer_key": consumer_key, "consumer_secret": consumer_secret}
-    with open(CONSUMER_FILE, "w") as f:
-        json.dump(consumer, f)
-    return consumer
 
 
 def authenicate_oauth(auth: Any) -> str:
@@ -38,8 +27,7 @@ def authenicate_oauth(auth: Any) -> str:
         raise tweepy.TweepError(e)
 
     if webbrowser.open_new_tab(redirect_url):
-        verifier = input("Verifier: ")
-        return verifier
+        return input("Verifier: ")
     else:
         raise ValueError()
 
@@ -70,9 +58,7 @@ def make_api() -> Any:
 
 class Twitter:
     def __init__(self,) -> None:
-        if os.path.isdir(ROOT_PATH):
-            pass
-        else:
+        if not os.path.isdir(ROOT_PATH):
             os.makedirs(ROOT_PATH)
         self.api = make_api()
 
