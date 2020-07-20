@@ -1,4 +1,4 @@
-# tamatebako
+# clitw
 
-    pip install tamatebako
-    tw
+    pip install clitw
+    clitw tw
