@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clitw"
-version = "0.0.8"
+version = "0.0.10"
 description = "CUI Twitter Client on Python"
 authors = ["Daisuke Oku <w.40141@gmail.com>"]
 readme = "README.rst"

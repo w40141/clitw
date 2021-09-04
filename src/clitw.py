@@ -7,7 +7,7 @@ import fire
 import tweepy
 
 BASE_URL = "https://api.twitter.com/"
-ROOT_PATH = os.environ["HOME"] + "/clitw"
+ROOT_PATH = os.environ["HOME"] + "/.local/clitw"
 TOKEN_FILE = ROOT_PATH + "/oauth_token.json"
 CONSUMER_FILE = ROOT_PATH + "/consumer_token.json"
 
